@@ -15,12 +15,24 @@
 	*/
 	function calculateFixedLoan()
 	{
-		let P = document.getElementByid("LoanAmountBox").value;
-		let r = document.getElementByid("InterestRateBox").value;
-		let t = document.getElementByid("NumberOfYearsBox").value;
-		let n = document.getElementByid("PaymentsPerYearBox").value;
-		Payment = P x (r / n) x (1 + r / n)**n(t) / (1 + r / n)**n(t) - 1;
+		let P = document.getElementById("LoanAmountBox").value;
+		let r = document.getElementById("InterestRateBox").value;
+		let t = document.getElementById("NumberOfYearsBox").value;
+		let n = document.getElementById("PaymentsPerYearBox").value;
+		// 					Half 1						Half 2
+		//Payment = P x (r / n) x (1 + r / n)^n(t) / (1 + r / n)^n(t) - 1; Seperate this in two since JavaScript doesnt like math expressions.
+		let Half1step1 = P * (r / n) * (1 + r / n);
+		//console.log(Half1step1);
+		let Half1 = Half1step1**n*t;
+		//console.log(Half1);
+		let Half2step1 = (1 + r / n)**n*t;
+		let Half2 = Half2step1 - 1;
+		let FullPayment = Half1 / Half2;
+		console.log(FullPayment)
+		Payment = P * (r / n) ** (1 + r / n)**n*t / 1 + r / n **n * t - 1;
 		console.log(Payment);
+		document.getElementById("Replace").innerHTML = "Seperating the equation in parts gives us " + FullPayment + " but doing the equation all at once with what this language supports gives us " + Payment + " its probably wrong either way";
+
 	}
 </script>
 </head>
@@ -30,5 +42,7 @@
 <input type="text" id="NumberOfYearsBox" value="Enter the number of years/term"> </input>
 <input type="text" id="PaymentsPerYearBox" value="Enter payments per year"> </input>
 <input type="text" id="MonthlyIncomeBox" value="Enter monthly income"> </input>
+<button onclick="calculateFixedLoan()">Push</button>
+<p id="Replace">This is a really not working mortgage calculator by someone who doesnt know how to caclulate mortgage, with the formula used from https://www.thebalance.com/calculate-mortgage-315668 . Use the text boxes above to calculate it. Works with "Fixed loans" apparently.</p>
 </body>
 </html>
