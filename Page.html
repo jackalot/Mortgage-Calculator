@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fixed Rate Calculator</title>
+<script type="text/javascript">
+	/*
+	As I was never taught how to calculate this, I used this formula https://www.thebalance.com/calculate-mortgage-315668
+	This formula is for Standard fixed-rate loans.
+	Inputs:
+	Loan Amount (P)
+	interest rate (r)
+	number of years (t)
+	payments per year (n)
+	monthly income
+	*/
+	function calculateFixedLoan()
+	{
+		let P = document.getElementByid("LoanAmountBox").value;
+		let r = document.getElementByid("InterestRateBox").value;
+		let t = document.getElementByid("NumberOfYearsBox").value;
+		let n = document.getElementByid("PaymentsPerYearBox").value;
+		Payment = P x (r / n) x (1 + r / n)**n(t) / (1 + r / n)**n(t) - 1;
+		console.log(Payment);
+	}
+</script>
+</head>
+<body>
+<input type="text" id="LoanAmountBox" value="Enter your loan Amount"> </input>
+<input type="text" id="InterestRateBox" value="Enter the interest rate"> </input>
+<input type="text" id="NumberOfYearsBox" value="Enter the number of years/term"> </input>
+<input type="text" id="PaymentsPerYearBox" value="Enter payments per year"> </input>
+<input type="text" id="MonthlyIncomeBox" value="Enter monthly income"> </input>
+</body>
+</html>
